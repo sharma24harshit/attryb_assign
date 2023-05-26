@@ -33,7 +33,7 @@ const Signup = () => {
   const registeruser = async()=>{
   
    try {
-    let res = await axios.post(`https://chambray-quixotic-badge.glitch.me/auth/register`,obj);
+    let res = await axios.post(`https://gold-elated-fossa.cyclic.app/auth/register`,obj);
     if(res.data.message == "Dealer regestred successfully"){
       toast({
         title: 'Registered Successfully',

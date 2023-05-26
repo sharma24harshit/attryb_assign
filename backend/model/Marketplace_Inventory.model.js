@@ -9,7 +9,8 @@ const MarketplaceInventorySchema = mongoose.Schema({
     accidents_reported:{type:String,required:true},
     previous_buyers:{type:String,required:true},
     registration_place:{type:String,required:true},
-    dealer_price:{type:String,required:true}
+    dealer_price:{type:String,required:true},
+    imgUrl:{type:String,required:true}
 },{versionKey:false})
 
 const MarketPlace = mongoose.model("marketplace",MarketplaceInventorySchema)

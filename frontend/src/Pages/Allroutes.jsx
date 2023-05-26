@@ -3,6 +3,7 @@ import Login from "./Login";
 import Home from "./Home";
 import Signup from "./Signup"
 import OEM from "./OEM";
+import AddCar from "./AddCar";
 
 const Allroutes = () => {
   return (
@@ -12,6 +13,7 @@ const Allroutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/oem" element={<OEM />} />
+        <Route path="/addcar" element={<AddCar />} />
       </Routes>
     </div>
   );

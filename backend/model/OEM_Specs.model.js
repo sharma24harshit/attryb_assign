@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const OEMSchema = mongoose.Schema({
-    name:{type:String},
     mfg_year:{type:String},
     model:{type:String},
     og_price:{type:String},

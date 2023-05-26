@@ -31,8 +31,7 @@ const Login = () => {
   const loginUser = async()=>{
   
     try {
-     let res = await axios.post(`https://chambray-quixotic-badge.glitch.me/auth/login`,obj);
-     console.log(res.data)
+     let res = await axios.post(`https://gold-elated-fossa.cyclic.app/auth/login`,obj);
      if(res.data.message == "login Successful"){
        toast({
          title: 'Login Successfully',
