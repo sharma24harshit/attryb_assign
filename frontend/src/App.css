@@ -32,7 +32,7 @@
   border: 1px solid rgb(171, 174, 175);
   border-radius: 8px;
 }
-.formBox label{
+.formBox label {
   color: rgb(18, 113, 202);
   font-weight: bold;
 }
@@ -41,34 +41,34 @@
   font-weight: bold;
   background-color: rgb(20, 157, 221);
 }
-.login_link{
+.login_link {
   color: rgb(8, 82, 179);
-   text-decoration: underline;
+  text-decoration: underline;
 }
-.add_car{
+.add_car {
   display: flex;
   justify-content: end;
   width: 90%;
   margin: auto;
   margin-top: 40px;
 }
-.addCar_container{
+.addCar_container {
   width: 85%;
   padding: 35px 25px;
   margin: auto;
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.addCar_container>div{
+.addCar_container > div {
   width: 45%;
 }
-.addCar_container>div label{
+.addCar_container > div label {
   color: rgb(18, 113, 202);
   font-weight: bold;
 }
-.addCar_container>div input{
+.addCar_container > div input {
   width: 90%;
   padding: 6px;
   margin-bottom: 4px;
@@ -76,7 +76,7 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: 1px solid rgb(171, 174, 175);
   border-radius: 8px;
 }
-.addCar_button{
+.addCar_button {
   width: 30%;
   display: flex;
   justify-content: space-around;
@@ -86,49 +86,53 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-top: 30px;
   margin-bottom: 90px;
 }
-.addCar_button button{
+.addCar_button button {
   height: 90%;
   width: 40%;
   font-size: 32px;
 }
-.carList{
-
-width: 35%;
-margin-top: 4px;
-margin-bottom: 3px;
-padding: 2px;
-box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+.carList {
+  width: 35%;
+  margin-top: 4px;
+  margin-bottom: 3px;
+  padding: 2px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
-.carList:hover{
+.carList:hover {
   cursor: pointer;
   background-color: rgb(171, 233, 212);
 }
-.homePage_cars_container{
+.homePage_cars_container {
   width: 90%;
   margin: auto;
+  margin-top: 50px;
+  margin-bottom: 130px;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
-.homePage_cars_div{
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+.homePage_cars_div {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   padding: 20px 15px;
 }
-.homePage_cars_div>img{
+.homePage_cars_div > img {
   width: 90%;
   margin: auto;
   height: 200px;
   margin-bottom: 10px;
 }
-.homePage_cars_div>p{
+.homePage_cars_div > p {
   font-weight: bold;
 }
-.details_btn{
+.details_btn {
   width: 35%;
   margin: auto;
   margin-top: 20px;
 }
-.details_btn>button{
+.details_btn > button {
   width: 100%;
   color: whitesmoke;
   background-color: rgb(20, 157, 221);
@@ -136,24 +140,58 @@ box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 
   padding: 6px;
   font-weight: bold;
 }
-.details_btn>button:hover{
+.details_btn > button:hover {
   background-color: rgb(19, 84, 114);
 }
-@media all and (min-width: 320px) and (max-width: 480px) {
-  .navbar {
-    height: 70px;
-  }
-  .navbar Button {
-    background-color: white;
-    font-weight: bolder;
-    font-size: 22px;
-  }
-  .formBox {
-    width: 70%;
-  }
-  .formBox input,
-  .formBox select {
-    width: 90%;
-  }
-  
+/*--------------------------------- Details Page css ------------------------------- */
+.details_page_container {
+  width: 90%;
+  padding: 35px 25px;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
+.details_page_container > div {
+  width: 47%;
+}
+.details_page_Dealer_Data {
+  width: 90%;
+  padding: 35px 25px;
+  margin: auto;
+  margin-top: 20px;
+}
+.main_container_detailPage {
+  width: 95%;
+  padding: 35px 25px;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.tables_detailPage {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.tables_detailPage td,
+.tables_detailPage th {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.detailPage_img {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 20px;
+}
+.detailPage_img > img {
+  width: 100%;
+}
+.detailPage_img > p {
+  font-weight: bold;
+  font-size: 39px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: rgb(24, 196, 8);
+}
+

@@ -1,149 +1,174 @@
-import { Box, Button, Heading } from '@chakra-ui/react'
-import  { useEffect, useState } from 'react'
-import {  useNavigate } from 'react-router-dom';
+import { Box, Button, Heading } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useToast } from '@chakra-ui/react'
+import { useToast } from "@chakra-ui/react";
 
 const AddCar = () => {
-  const [obj, setObj] = useState({km_odoMeter:"", major_scratches:"", 
-  original_paint:"", accidents_reported:"", previous_buyers:"", registration_place:"",dealer_price:""});
-    const [carModel, setCarModel] = useState("");
-    const [carData, setCarData] = useState([]);
-const [OEMSepcs, setOEMSpecs] = useState(null)
-const [imgUrl, setImgUrl] = useState("");
-const [url, setUrl] = useState("");
-const nav = useNavigate();
-const toast = useToast()
+  const [obj, setObj] = useState({
+    km_odoMeter: "",
+    major_scratches: "",
+    original_paint: "",
+    accidents_reported: "",
+    previous_buyers: "",
+    registration_place: "",
+    dealer_price: "",
+  });
+  const [carModel, setCarModel] = useState("");
+  const [carData, setCarData] = useState([]);
+  const [OEMSepcs, setOEMSpecs] = useState(null);
+  const [imgUrl, setImgUrl] = useState("");
+  const [url, setUrl] = useState("");
+  const nav = useNavigate();
+  const toast = useToast();
 
-useEffect(()=>{
-let token  = localStorage.getItem("buyCarToken");
-console.log(token)
-if(token==undefined || token==null){
-  nav("/login")
-}
-},[])
+  useEffect(() => {
+    let token = localStorage.getItem("buyCarToken");
+    console.log(token);
+    if (token == undefined || token == null) {
+      nav("/login");
+    }
+  }, []);
 
-const handleSubmit = async()=>{
-   
-    if(obj.km_odoMeter==""|| obj.major_scratches==""|| obj.original_paint=="" || obj.accidents_reported==""|| obj.previous_buyers==""||
-  obj.registration_place == "" || obj.dealer_price == "" || url==""){
-    toast({
-      title: 'Please fill all fields.',
-      description: "All fields mandatory",
-      status: 'warning',
-      duration: 2000,
-      isClosable: true,
-    })
-   }
-   else{
-   
-    let newObj = {...obj,car_data:OEMSepcs._id,imgUrl:url}
-    try {
-     const response  = await axios.post(`https://gold-elated-fossa.cyclic.app/marketplace/add`,newObj,{
-      headers:{
-       Authorization:`Barrier ${localStorage.getItem("buyCarToken")}`
-      }
-     }); 
-     if(response.data.message=="car added successfully"){
-        toast({
-            title: 'Car Added successfully',
+  const handleSubmit = async () => {
+    if (
+      obj.km_odoMeter == "" ||
+      obj.major_scratches == "" ||
+      obj.original_paint == "" ||
+      obj.accidents_reported == "" ||
+      obj.previous_buyers == "" ||
+      obj.registration_place == "" ||
+      obj.dealer_price == "" ||
+      url == ""
+    ) {
+      toast({
+        title: "Please fill all fields.",
+        description: "All fields mandatory",
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+      });
+    } else {
+      let newObj = { ...obj, car_data: OEMSepcs._id, imgUrl: url };
+      try {
+        const response = await axios.post(
+          `https://gold-elated-fossa.cyclic.app/marketplace/add`,
+          newObj,
+          {
+            headers: {
+              Authorization: `Barrier ${localStorage.getItem("buyCarToken")}`,
+            },
+          }
+        );
+        if (response.data.message == "car added successfully") {
+          toast({
+            title: "Car Added successfully",
             description: "successfully",
-            status: 'success',
+            status: "success",
             duration: 2000,
             isClosable: true,
-          })
-          setObj({km_odoMeter:"", major_scratches:"", 
-          original_paint:"", accidents_reported:"", previous_buyers:"", registration_place:"",dealer_price:""})
-          setOEMSpecs(null)
-          setUrl("")
-          setCarModel("")
-     }
-    
-    } catch (error) {
-      console.log(error)
-    }
-     
-   }
-}
-
-const handleDetails = (e)=>{
-  setObj({ ...obj, [e.target.name]: e.target.value });
-}
-
-const handleCarModel = (e)=>{
-  
-  setCarModel( e.target.value );
-  
-}
-
-const SearchCarModel = async()=>{
-  if(carModel!=""){
-    try {
-      const car = await axios.get(`https://gold-elated-fossa.cyclic.app/oemspecs?q=${carModel}`);
-      if(car.data.length==0){
-      let message = {_id:12554, model:"No such car in Data base"}
-      setCarData([message])
+          });
+          setObj({
+            km_odoMeter: "",
+            major_scratches: "",
+            original_paint: "",
+            accidents_reported: "",
+            previous_buyers: "",
+            registration_place: "",
+            dealer_price: "",
+          });
+          setOEMSpecs(null);
+          setUrl("");
+          setCarModel("");
+        }
+      } catch (error) {
+        console.log(error);
       }
-      else{
-        setCarData(car.data)
-      }
-          
-    } catch (error) {
-      console.log(error)
     }
-    
-  }
-}
+  };
 
-const addOEM = (el)=>{
-  setOEMSpecs(el)
-  setCarData([])
-}
-// add car image function
-const handleImg = (e)=>{
-    setImgUrl(e.target.value)
+  const handleDetails = (e) => {
+    setObj({ ...obj, [e.target.name]: e.target.value });
+  };
+
+  const handleCarModel = (e) => {
+    setCarModel(e.target.value);
+  };
+
+  const SearchCarModel = async () => {
+    if (carModel != "") {
+      try {
+        const car = await axios.get(
+          `https://gold-elated-fossa.cyclic.app/oemspecs?q=${carModel}`
+        );
+        if (car.data.length == 0) {
+          let message = { _id: 12554, model: "No such car in Data base" };
+          setCarData([message]);
+        } else {
+          setCarData(car.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const addOEM = (el) => {
+    setOEMSpecs(el);
+    setCarData([]);
+  };
+  // add car image function
+  const handleImg = (e) => {
+    setImgUrl(e.target.value);
     uploadImg(e.target.files[0]);
-}
+  };
 
-const uploadImg  = async(data)=>{
-    
+  const uploadImg = async (data) => {
     let cloudName = `dmj7ibh4p`;
     let preset = "buycars";
-try {
-    let imgData = new FormData();
-    imgData.append("file",data);
-    if(cloudName&&preset){
-        imgData.append("upload_preset",preset);
-        imgData.append("cloud_name",cloudName);
-        let res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,imgData);
-       let url = res.data.secure_url;
-       setUrl(url)
-        console.log(imgUrl)
+    try {
+      let imgData = new FormData();
+      imgData.append("file", data);
+      if (cloudName && preset) {
+        imgData.append("upload_preset", preset);
+        imgData.append("cloud_name", cloudName);
+        let res = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+          imgData
+        );
+        let url = res.data.secure_url;
+        setUrl(url);
+        console.log(imgUrl);
+      } else {
+        throw cloudName;
+      }
+    } catch (err) {
+      console.log(err);
     }
-    else{
-        throw cloudName
-    }
-} catch (err) {
-    console.log(err)
-}
-}
-// reset Details
-const resetForm = ()=>{
-    setObj({km_odoMeter:"", major_scratches:"", 
-          original_paint:"", accidents_reported:"", previous_buyers:"", registration_place:"",dealer_price:""})
-          setOEMSpecs(null)
-          setUrl("")
-          setCarModel("")
-          setCarData([])
-}
+  };
+  // reset Details
+  const resetForm = () => {
+    setObj({
+      km_odoMeter: "",
+      major_scratches: "",
+      original_paint: "",
+      accidents_reported: "",
+      previous_buyers: "",
+      registration_place: "",
+      dealer_price: "",
+    });
+    setOEMSpecs(null);
+    setUrl("");
+    setCarModel("");
+    setCarData([]);
+  };
 
   return (
     <div>
-      <Heading className='Heading' >Add New Car</Heading>
-      
-           <Box className='addCar_container' >
-          
-          <Box>
+      <Heading className="Heading">Add New Car</Heading>
+
+      <Box className="addCar_container">
+        <Box>
           <label>Enter KMs on Odometer</label>
           <br />
           <input
@@ -217,73 +242,64 @@ const resetForm = ()=>{
             onChange={handleDetails}
           />
           <br />
-          </Box>
-            <Box>
-            <label>Enter Car Model</label> <br />
-          <input  type="text"
+        </Box>
+        <Box>
+          <label>Enter Car Model</label> <br />
+          <input
+            type="text"
             value={carModel}
             name="dealer_price"
             onChange={handleCarModel}
-            placeholder='Search car OEM' /> <input type="button" value="Search" onClick={SearchCarModel} /> <br />
-            {carData && carData.map((el)=>(
-              <div key={el._id} onClick={()=>addOEM(el)} className='carList' >
-                  <p>{el.model}</p>
+            placeholder="Search car OEM"
+          />{" "}
+          <input type="button" value="Search" onClick={SearchCarModel} /> <br />
+          {carData &&
+            carData.map((el) => (
+              <div key={el._id} onClick={() => addOEM(el)} className="carList">
+                <p>{el.model}</p>
               </div>
-             
             ))}
-            {OEMSepcs &&
+          {OEMSepcs && (
             <div>
-               <label>Model Name</label>
-            <br />
-            <input
-              value={OEMSepcs.model} readOnly
-            />
-            <br />
+              <label>Model Name</label>
+              <br />
+              <input value={OEMSepcs.model} readOnly />
+              <br />
               <label>Max Speed</label>
-            <br />
-            <input
-              value={OEMSepcs.max_speed} readOnly
-            />
-            <br />
-            <label>Manuf. Year</label>
-            <br />
-            <input
-              value={OEMSepcs.mfg_year} readOnly
-            /> 
-            <br />
-            <label>Mileage</label>
-            <br />
-            <input
-              value={OEMSepcs.mileage}   readOnly
-            />
-            <br />
-            <label>Original Price</label>
-            <br />
-            <input
-              value={OEMSepcs.og_price}  readOnly
-            />
-            <br />
-            <label>Power(BHP)</label>
-            <br />
-            <input
-              value={OEMSepcs.power}  readOnly
-            />
-            <br />
+              <br />
+              <input value={OEMSepcs.max_speed} readOnly />
+              <br />
+              <label>Manuf. Year</label>
+              <br />
+              <input value={OEMSepcs.mfg_year} readOnly />
+              <br />
+              <label>Mileage</label>
+              <br />
+              <input value={OEMSepcs.mileage} readOnly />
+              <br />
+              <label>Original Price</label>
+              <br />
+              <input value={OEMSepcs.og_price} readOnly />
+              <br />
+              <label>Power(BHP)</label>
+              <br />
+              <input value={OEMSepcs.power} readOnly />
+              <br />
             </div>
-            }
-            </Box>
-            
-      
-           </Box>
-          
-            <Box className='addCar_button' >
-            <Button colorScheme='red' mr={3} onClick={resetForm}>
-              Reset
-            </Button>
-            <Button colorScheme='blue' onClick={handleSubmit} >Add</Button>
-            </Box>
-    </div>
-  )
-}
+          )}
+        </Box>
+      </Box>
 
-export default AddCar
+      <Box className="addCar_button">
+        <Button colorScheme="red" mr={3} onClick={resetForm}>
+          Reset
+        </Button>
+        <Button colorScheme="blue" onClick={handleSubmit}>
+          Add
+        </Button>
+      </Box>
+    </div>
+  );
+};
+
+export default AddCar;

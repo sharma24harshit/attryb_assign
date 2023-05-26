@@ -1,5 +1,5 @@
 import { Heading } from '@chakra-ui/react';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react'
 import axios from "axios"
@@ -42,6 +42,7 @@ const Signup = () => {
         duration: 2000,
         isClosable: true,
       })
+      setObj({ name:"", email: "", password: "" })
      nav("/login")
     }
    
@@ -58,8 +59,9 @@ const Signup = () => {
 
   return (
     <div>
-      <Heading className="Heading">Signup Page</Heading>
+     <Heading className="Heading">Signup Form</Heading>
       <div className="formBox">
+      
         <form onSubmit={handleSubmit}>
         <label>Enter Name</label>
           <br />

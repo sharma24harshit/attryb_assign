@@ -1,7 +1,19 @@
 import { Box, Button } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [token, setToken] = useState(localStorage.getItem("buyCarToken") || "");
+  useEffect(() => {
+    let verifyToken = localStorage.getItem("buyCarToken");
+    setToken(verifyToken);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("buyCarToken");
+    localStorage.removeItem("detailsPage");
+    setToken("");
+  };
 
   return (
     <div>
@@ -11,21 +23,29 @@ const Navbar = () => {
             <Button>Home</Button>
           </Box>
         </Link>
-        <Link to="/login">
-            <Box>
-            <Button>Login</Button>
+        {token ? (
+          <Box>
+            <Button onClick={handleLogout}>Logout</Button>
           </Box>
-            </Link>
-
-            <Link to="/signup">
+        ) : (
+          <Link to="/login">
             <Box>
-            <Button>Signup</Button>
-          </Box>
-            </Link>
+              <Button>Login</Button>
+            </Box>
+          </Link>
+        )}
+        {token ? (
+          ""
+        ) : (
+          <Link to="/signup">
+            <Box>
+              <Button>Signup</Button>
+            </Box>
+          </Link>
+        )}
       </Box>
     </div>
   );
 };
-
 
 export default Navbar;
