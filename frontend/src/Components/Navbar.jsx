@@ -3,11 +3,16 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [token, setToken] = useState(localStorage.getItem("buyCarToken") || "");
+  const [token, setToken] = useState("");
   useEffect(() => {
     let verifyToken = localStorage.getItem("buyCarToken");
-    setToken(verifyToken);
-  }, []);
+    if(verifyToken){
+      setToken(verifyToken);
+    }
+    else{
+      setToken("");
+    }
+  }, [token]);
 
   const handleLogout = () => {
     localStorage.removeItem("buyCarToken");

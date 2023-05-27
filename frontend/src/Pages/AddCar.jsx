@@ -24,7 +24,7 @@ const AddCar = () => {
 
   useEffect(() => {
     let token = localStorage.getItem("buyCarToken");
-    console.log(token);
+    
     if (token == undefined || token == null) {
       nav("/login");
     }
